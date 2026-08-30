@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars (gitignored) and fill in real values.
+# Never commit terraform.tfvars.
+
+aws_region  = "us-east-1" # or us-west-2 — check which region your Pluralsight sandbox session assigned
+project_name = "aws-agent-poc"
+
+anthropic_api_key = "sk-ant-..."
+
+# Optional — leave blank to disable Langfuse tracing
+langfuse_public_key = ""
+langfuse_secret_key = ""
+langfuse_host        = "https://cloud.langfuse.com"

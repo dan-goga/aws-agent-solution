@@ -1,0 +1,12 @@
+[project]
+name = "lambda-tool"
+version = "0.1.0"
+description = "Dev tooling for the agent's price-estimator Lambda handler. Not part of the deployed artifact — the handler is stdlib-only and zipped directly by Terraform's archive_file data source."
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = ["ruff>=0.6", "pytest>=8.0"]
+
+[tool.ruff]
+line-length = 100
