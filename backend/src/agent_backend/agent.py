@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain.agents import create_agent
 from langchain_anthropic import ChatAnthropic
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from .config import settings
 from .tools import estimate_cost
@@ -14,22 +13,15 @@ SYSTEM_PROMPT = (
 )
 
 
-def build_agent_executor() -> AgentExecutor:
+def build_agent():
     llm = ChatAnthropic(
         model=settings.anthropic_model,
         api_key=settings.anthropic_api_key,
         temperature=0,
     )
 
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", SYSTEM_PROMPT),
-            MessagesPlaceholder("chat_history", optional=True),
-            ("human", "{input}"),
-            MessagesPlaceholder("agent_scratchpad"),
-        ]
+    return create_agent(
+        model=llm,
+        tools=[estimate_cost],
+        system_prompt=SYSTEM_PROMPT,
     )
-
-    tools = [estimate_cost]
-    agent = create_tool_calling_agent(llm, tools, prompt)
-    return AgentExecutor(agent=agent, tools=tools, verbose=False)

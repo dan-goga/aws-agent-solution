@@ -9,5 +9,5 @@ resource "aws_secretsmanager_secret" "anthropic_api_key" {
 
 resource "aws_secretsmanager_secret_version" "anthropic_api_key" {
   secret_id     = aws_secretsmanager_secret.anthropic_api_key.id
-  secret_string = var.anthropic_api_key
+  secret_string = var.ANTHROPIC_KEY
 }

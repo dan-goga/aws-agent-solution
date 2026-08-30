@@ -15,8 +15,8 @@ variable "project_name" {
   default     = "aws-agent-poc"
 }
 
-variable "anthropic_api_key" {
-  description = "Anthropic API key. Stored in Secrets Manager and injected into the backend container. Set via terraform.tfvars (gitignored) or TF_VAR_anthropic_api_key."
+variable "ANTHROPIC_KEY" {
+  description = "Anthropic API key. Stored in Secrets Manager and injected into the backend container. Set via terraform.tfvars (gitignored) or TF_VAR_ANTHROPIC_KEY."
   type        = string
   sensitive   = true
 }

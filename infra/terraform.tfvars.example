@@ -4,7 +4,7 @@
 aws_region  = "us-east-1" # or us-west-2 — check which region your Pluralsight sandbox session assigned
 project_name = "aws-agent-poc"
 
-anthropic_api_key = "sk-ant-..."
+ANTHROPIC_KEY = "sk-ant-..."
 
 # Optional — leave blank to disable Langfuse tracing
 langfuse_public_key = ""

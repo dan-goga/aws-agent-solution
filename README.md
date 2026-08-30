@@ -45,7 +45,7 @@ Both ECS services run as Fargate tasks in public subnets (no NAT Gateway — see
 cd infra
 cp terraform.tfvars.example terraform.tfvars
 # edit terraform.tfvars: set aws_region (us-east-1 or us-west-2, per your
-# sandbox session) and anthropic_api_key
+# sandbox session) and ANTHROPIC_KEY
 
 terraform init
 terraform plan -out=tfplan

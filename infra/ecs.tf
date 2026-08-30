@@ -21,6 +21,13 @@ resource "aws_ecs_task_definition" "backend" {
   execution_role_arn       = aws_iam_role.ecs_task_execution.arn
   task_role_arn            = aws_iam_role.ecs_backend_task.arn
 
+  # Matches images built on Apple Silicon (arm64) — avoids "exec format
+  # error" from running an arm64 image on Fargate's default x86_64 runtime.
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "ARM64"
+  }
+
   container_definitions = jsonencode([
     {
       name      = "backend"
@@ -72,6 +79,11 @@ resource "aws_ecs_task_definition" "frontend" {
   execution_role_arn       = aws_iam_role.ecs_task_execution.arn
   # No task_role_arn: the frontend only speaks HTTP to the ALB and needs no
   # AWS API access of its own.
+
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "ARM64"
+  }
 
   container_definitions = jsonencode([
     {
